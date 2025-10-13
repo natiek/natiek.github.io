@@ -1,4 +1,4 @@
-<h2> Hi there, I'm n@ie!</h2>
+<h2> Hi there, I'm natie!</h2>
 
 ### <img src="https://avatars1.githubusercontent.com/u/20532948?s=120&v=4" width="50"> A little more about me...  
 
@@ -11,12 +11,9 @@ data class Natie(
 
 ---
 
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on Google Android Studio Bot
-- 🌱 I’m currently learning Stable Diffusion
+- 🔭 I worker on Google Android Studio Bot
+- 🌱 I’m AI ready
 - 👯 I’m looking to collaborate on Anything
 - 💬 Ask me about Android or iOS dev
-- 📫 How to reach me: natieklopper@gmail.com
 - ⚡ Fun fact: Corporal Wojtek was an actual bear 🐻
 -->
