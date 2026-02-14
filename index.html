@@ -1,1 +1,461 @@
-<h1>Hello there</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kotlin Resume - Jonathan Klopper</title>
+    <style>
+        /* Darcula Dark Theme - Android Studio Colors */
+        body {
+            background-color: #2B2B2B;
+            color: #A9B7C6;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .sidebar {
+            display: table-cell;
+            width: 40%;
+            background-color: #3C3F41;
+            padding: 30px 25px;
+            vertical-align: top;
+            border-right: 1px solid #323232;
+        }
+
+        .main-content {
+            display: table-cell;
+            width: 60%;
+            padding: 30px 20px;
+            vertical-align: top;
+        }
+
+        /* Indentation for code-like appearance */
+        .indent-1 { margin-left: 20px; }
+        .indent-2 { margin-left: 40px; }
+        .indent-3 { margin-left: 60px; }
+        .indent-4 { margin-left: 80px; }
+
+        .profile-picture {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 2px solid #A9B7C6;
+            margin: 0 auto 20px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .name {
+            color: #6897BB; /* Light blue for class names */
+            font-size: 1.4em;
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        .class-declaration {
+            color: #CC7832; /* Orange for keywords */
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 15px 0;
+            text-align: left;
+            margin-left: 20px; /* Indent the class declaration like in IDEs */
+        }
+        
+        .class-declaration-no-indent {
+            color: #CC7832; /* Orange for keywords */
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 15px 0 0 0;
+            text-align: left;
+        }
+        
+        .class-extension {
+            color: #CC7832; /* Orange for keywords */
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0 0 15px 20px; /* Add left margin to indent */
+            text-align: left;
+        }
+        
+        .main-class-declaration {
+            color: #CC7832; /* Orange for keywords */
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .subtitle {
+            color: #A9B7C6; /* Default text color */
+            font-size: 1.0em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-label {
+            color: #9876AA; /* Purple for variable names */
+            width: 100px;
+            display: inline-block;
+        }
+
+        .contact-value {
+            color: #6A8998; /* Green for string literals */
+        }
+
+        .section-title {
+            color: #CC7832; /* Orange for keywords */
+            font-size: 1.2em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .item {
+            margin-bottom: 20px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .item-title {
+            color: #6897BB; /* Light blue for function names */
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .item-subtitle {
+            color: #9876AA; /* Purple for variable names */
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        .item-date {
+            color: #6A8998; /* Green for string literals */
+            font-size: 0.9em;
+        }
+
+        .item-details {
+            margin-top: 8px;
+            line-height: 1.5;
+            color: #A9B7C6; /* Default text color */
+        }
+
+        .skill-category {
+            margin-bottom: 20px;
+        }
+
+        .skill-category-title {
+            color: #CC7832; /* Orange for keywords */
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .skill-item {
+            display: inline-block;
+            background-color: #3C3F41;
+            color: #A9B7C6;
+            padding: 5px 10px;
+            margin: 4px 5px 4px 0;
+            border-radius: 3px;
+            font-size: 0.9em;
+            border: 1px solid #555555;
+        }
+
+        /* Syntax highlighting classes */
+        .keyword {
+            color: #CC7832; /* Orange */
+        }
+        
+        .function-name {
+            color: #6897BB; /* Light blue */
+        }
+        
+        .class-type {
+            color: #9876AA; /* Purple */
+        }
+        
+        .variable-name {
+            color: #9876AA; /* Purple */
+        }
+        
+        .string-literal {
+            color: #6A8998; /* Green */
+        }
+        
+        .number-literal {
+            color: #6897BB; /* Cyan blue */
+        }
+        
+        .comment {
+            color: #808080; /* Gray */
+        }
+        
+        .bracket {
+            color: #A9B7C6; /* Default text */
+        }
+
+        .operator {
+            color: #A9B7C6; /* Default text */
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #808080; /* Gray */
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .container {
+                display: block;
+            }
+            .sidebar, .main-content {
+                display: block;
+                width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+    <body>
+        <div class="container">
+            <div class="sidebar" style="padding-top: 40px;">
+                <div class="section-title"><span class="keyword">fun</span> <span class="function-name">image</span>(<span class="string-literal">path = "/pp.jpg"</span>): <span class="class-type">Image</span> {</div>
+                <div style="height: 10px;"></div>
+                <img src="pp.jpg" alt="Profile Picture" class="profile-picture">
+                <div class="section-title">}</div>
+                <br/><br/>
+                <div class="class-declaration-no-indent"><span class="keyword">class</span> <span class="class-type">MobileDeveloper</span><span class="keyword">:</span> </div>
+                <div class="class-extension"><span class="class-type">SoftwareEngineer</span> {</div>
+                <div class="contact-list">
+                    <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">name</span> = <span class="string-literal">"Natie Klopper"</span></div>
+                    <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">title</span> = <span class="string-literal">"Senior Software Engineer"</span></div>
+                    <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">loc</span> = <span class="string-literal">"Phnom Penh, Cambodia"</span></div>
+                    <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">email</span> = <span class="string-literal">"natieklopper@gmail.com"</span></div>
+                    <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">phone</span> = <span class="string-literal">"+855 9368 8985"</span></div>
+                    <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">linkedin</span> = <span class="string-literal">"nklopper"</span></div>
+                    <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">github</span> = <span class="string-literal">"nklopper"</span></div>
+                </div>
+                <br/>
+                <div style="height: 10px;"></div>
+                <div class="summary">
+                    <div class="indent-1"><span class="keyword">fun</span> <span class="function-name">getSummary</span>(): <span class="class-type">String</span> {</div>
+                    <div class="indent-2"><span class="keyword">return</span> <span class="string-literal">"Experienced software engineer with expertise in modern Android development, |Kotlin programming, and scalable application architecture. Passionate about |clean code and innovative solutions. Strong background in mobile app |development, team leadership, and delivering high-quality products."</span></div>
+                    <div class="indent-1">}</div>
+                </div>
+                <div class="class-declaration-no-indent">}</div>
+            </div>
+            
+            <div class="main-content">
+                <div class="main-class-declaration"><span class="keyword">class</span> <span class="class-type">Resume</span>: <span class="class-type">CurriculumVitae</span> {</div>
+                
+                <div class="section indent-1">
+
+                    <div class="section">
+                        <div class="section-title"><span class="keyword">val</span> <span class="variable-name">skills</span>: <span class="class-type">Map</span>&lt;<span class="class-type">String</span>, <span class="class-type">List</span>&lt;<span class="class-type">String</span>&gt;&gt; = <span class="function-name">mapOf</span>(</div>
+                        
+                        <div class="skill-category">
+                            <div class="indent-1"><span class="comment">// Languages & Frameworks:</span></div>
+                            <div class="indent-1"><span class="class-type">"Languages"</span> <span class="operator">to</span> <span class="function-name">listOf</span>(</div>
+                            <div class="indent-2"><span class="string-literal">"Kotlin"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Java"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Jetpack Compose"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Coroutines"</span></div>
+                            <div class="indent-1">),</div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <div class="indent-1"><span class="comment">// Android Technologies:</span></div>
+                            <div class="indent-1"><span class="class-type">"Frameworks"</span> <span class="operator">to</span> <span class="function-name">listOf</span>(</div>
+                            <div class="indent-2"><span class="string-literal">"Android SDK"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"MVVM"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Room"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Retrofit"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Dagger/Hilt"</span></div>
+                            <div class="indent-1">),</div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <div class="indent-1"><span class="comment">// Tools & Technologies:</span></div>
+                            <div class="indent-1"><span class="class-type">"Tools"</span> <span class="operator">to</span> <span class="function-name">listOf</span>(</div>
+                            <div class="indent-2"><span class="string-literal">"Git"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Firebase"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"CI/CD"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Jira"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Agile/Scrum"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Docker"</span></div>
+                            <div class="indent-1">)</div>
+                        </div>
+                    </div>
+                    <div class="section-title">}</div>
+                
+                    <div class="section-title"><span class="keyword">fun</span> <span class="function-name">getWorkExperience</span>(): <span class="class-type">List</span>&lt;<span class="class-type">Job</span>&gt; {</div>
+                    <div class="item">
+                        <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">leadAndroidDeveloper</span> = <span class="function-name">Job</span>(</div>
+                        <div class="indent-2"><span class="variable-name">title</span> = <span class="string-literal">"Lead Android Developer"</span>,</div>
+                        <div class="indent-2"><span class="variable-name">company</span> = <span class="string-literal">"Tech Innovations"</span>,</div>
+                        <div class="indent-2"><span class="variable-name">startDate</span> = <span class="number-literal">2020</span>,</div>
+                        <div class="indent-2"><span class="variable-name">endDate</span> = <span class="string-literal">"Present"</span>,</div>
+                        <div class="indent-2"><span class="variable-name">description</span> = <span class="function-name">getJobDescription</span>() {</div>
+                        <div class="indent-3"><span class="string-literal">"Lead development of multiple Android applications using Kotlin"</span></div>
+                        <div class="indent-3"><span class="string-literal">"Implemented MVVM architecture and clean code principles"</span></div>
+                        <div class="indent-3"><span class="string-literal">"Mentored junior developers and established coding standards"</span></div>
+                        <div class="indent-3"><span class="string-literal">"Integrated REST APIs and third-party libraries"</span></div>
+                        <div class="indent-2">}</div>
+                        <div class="indent-1">)</div>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">seniorMobileDeveloper</span> = <span class="function-name">Job</span>(</div>
+                        <div class="indent-2"><span class="variable-name">title</span> = <span class="string-literal">"Senior Mobile Developer"</span>,</div>
+                        <div class="indent-2"><span class="variable-name">company</span> = <span class="string-literal">"Digital Solutions"</span>,</div>
+                        <div class="indent-2"><span class="variable-name">startDate</span> = <span class="number-literal">2017</span>,</div>
+                        <div class="indent-2"><span class="variable-name">endDate</span> = <span class="number-literal">2020</span>,</div>
+                        <div class="indent-2"><span class="variable-name">description</span> = <span class="function-name">getJobDescription</span>() {</div>
+                        <div class="indent-3"><span class="string-literal">"Developed and maintained cross-platform applications"</span></div>
+                        <div class="indent-3"><span class="string-literal">"Optimized app performance and improved user experience"</span></div>
+                        <div class="indent-3"><span class="string-literal">"Collaborated with UX/UI designers to implement app interface"</span></div>
+                        <div class="indent-2">}</div>
+                        <div class="indent-1">)</div>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">androidDeveloper</span> = <span class="function-name">Job</span>(</div>
+                        <div class="indent-2"><span class="variable-name">title</span> = <span class="string-literal">"Android Developer"</span>,</div>
+                        <div class="indent-2"><span class="variable-name">company</span> = <span class="string-literal">"Startup Ventures"</span>,</div>
+                        <div class="indent-2"><span class="variable-name">startDate</span> = <span class="number-literal">2015</span>,</div>
+                        <div class="indent-2"><span class="variable-name">endDate</span> = <span class="number-literal">2017</span>,</div>
+                        <div class="indent-2"><span class="variable-name">description</span> = <span class="function-name">getJobDescription</span>() {</div>
+                        <div class="indent-3"><span class="string-literal">"Built full-featured mobile applications from concept to launch"</span></div>
+                        <div class="indent-3"><span class="string-literal">"Implemented secure authentication and payment systems"</span></div>
+                        <div class="indent-3"><span class="string-literal">"Ensured app store compliance and quality standards"</span></div>
+                        <div class="indent-2">}</div>
+                        <div class="indent-1">)</div>
+                    </div>
+                    
+                    <div class="item">
+                        <div class="indent-1"><span class="keyword">return</span> <span class="class-type">ListOf</span>(</div>
+                        <div class="indent-2"><span class="variable-name">leadAndroidDeveloper</span>,</div>
+                        <div class="indent-2"><span class="variable-name">seniorMobileDeveloper</span>,</div>
+                        <div class="indent-2"><span class="variable-name">androidDeveloper</span></div>
+                        <div class="indent-1">)</div><div class="section-title">}</div>
+                    </div>
+                
+                    <div class="section">
+                        <div class="section-title"><span class="keyword">fun</span> <span class="function-name">getEducation</span>(): <span class="class-type">List</span>&lt;<span class="class-type">Education</span>&gt; {</div>
+                        
+                        <div class="item">
+                            <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">bachelorDegree</span> = <span class="function-name">Education</span>(</div>
+                            <div class="indent-2"><span class="variable-name">degree</span> = <span class="string-literal">"BSc Computer Science"</span>,</div>
+                            <div class="indent-2"><span class="variable-name">institution</span> = <span class="string-literal">"University of Cape Town"</span>,</div>
+                            <div class="indent-2"><span class="variable-name">startDate</span> = <span class="number-literal">2011</span>,</div>
+                            <div class="indent-2"><span class="variable-name">endDate</span> = <span class="number-literal">2014</span></div>
+                            <div class="indent-1">)</div>
+                        </div>
+                        
+                        <div class="item">
+                            <div class="indent-1"><span class="keyword">return</span> <span class="class-type">ListOf</span>(<span class="variable-name">bachelorDegree</span>)</div>
+                        </div><div class="section-title">}</div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title"><span class="keyword">fun</span> <span class="function-name">getProjects</span>(): <span class="class-type">List</span>&lt;<span class="class-type">Project</span>&gt; {</div>
+                        
+                        <div class="item">
+                            <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">ecommerceApp</span> = <span class="function-name">Project</span>(</div>
+                            <div class="indent-2"><span class="variable-name">name</span> = <span class="string-literal">"E-commerce App"</span>,</div>
+                            <div class="indent-2"><span class="variable-name">description</span> = <span class="function-name">getProjectDescription</span>() {</div>
+                            <div class="indent-3"><span class="string-literal">"Full-featured shopping application with payment integration"</span></div>
+                            <div class="indent-3"><span class="string-literal">"Utilized clean architecture principles for scalability"</span></div>
+                            <div class="indent-3"><span class="string-literal">"Implemented secure user authentication and order tracking"</span></div>
+                            <div class="indent-2">},</div>
+                            <div class="indent-2"><span class="variable-name">technologies</span> = <span class="function-name">listOf</span>(<span class="string-literal">"Kotlin"</span>, <span class="string-literal">"MVVM"</span>, <span class="string-literal">"Coroutines"</span>)</div>
+                            <div class="indent-1">)</div>
+                        </div>
+                        
+                        <div class="item">
+                            <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">fitnessTracker</span> = <span class="function-name">Project</span>(</div>
+                            <div class="indent-2"><span class="variable-name">name</span> = <span class="string-literal">"Health & Fitness Tracker"</span>,</div>
+                            <div class="indent-2"><span class="variable-name">description</span> = <span class="function-name">getProjectDescription</span>() {</div>
+                            <div class="indent-3"><span class="string-literal">"Real-time fitness tracking application with wearable integration"</span></div>
+                            <div class="indent-3"><span class="string-literal">"Implemented complex data visualization and analytics"</span></div>
+                            <div class="indent-3"><span class="string-literal">"Connected to multiple health API sources for comprehensive tracking"</span></div>
+                            <div class="indent-2">},</div>
+                            <div class="indent-2"><span class="variable-name">technologies</span> = <span class="function-name">listOf</span>(<span class="string-literal">"Jetpack Compose"</span>, <span class="string-literal">"Room"</span>, <span class="string-literal">"FCM"</span>)</div>
+                            <div class="indent-1">)</div>
+                        </div>
+                        
+                        <div class="item">
+                            <div class="indent-1"><span class="keyword">val</span> <span class="variable-name">bankingApp</span> = <span class="function-name">Project</span>(</div>
+                            <div class="indent-2"><span class="variable-name">name</span> = <span class="string-literal">"Mobile Banking Solution"</span>,</div>
+                            <div class="indent-2"><span class="variable-name">description</span> = <span class="function-name">getProjectDescription</span>() {</div>
+                            <div class="indent-3"><span class="string-literal">"Highly secure banking application with real-time transaction processing"</span></div>
+                            <div class="indent-3"><span class="string-literal">"Implemented biometric authentication and end-to-end encryption"</span></div>
+                            <div class="indent-3"><span class="string-literal">"Achieved compliance with financial security standards"</span></div>
+                            <div class="indent-2">},</div>
+                            <div class="indent-2"><span class="variable-name">technologies</span> = <span class="function-name">listOf</span>(<span class="string-literal">"Kotlin"</span>, <span class="string-literal">"Retrofit"</span>, <span class="string-literal">"Biometric API"</span>)</div>
+                            <div class="indent-1">)</div>
+                        </div>
+                        
+                        <div class="item">
+                            <div class="indent-1"><span class="keyword">return</span> <span class="class-type">ListOf</span>(</div>
+                            <div class="indent-2"><span class="variable-name">ecommerceApp</span>,</div>
+                            <div class="indent-2"><span class="variable-name">fitnessTracker</span>,</div>
+                            <div class="indent-2"><span class="variable-name">bankingApp</span></div>
+                            <div class="indent-1">)</div>
+                        </div><div class="section-title">}</div>
+                    </div>
+                    
+                    <div class="section">
+                        <div class="section-title"><span class="keyword">fun</span> <span class="function-name">getCertifications</span>(): <span class="class-type">List</span>&lt;<span class="class-type">String</span>&gt; {</div>
+                        <div class="item">
+                            <div class="indent-1"><span class="keyword">return</span> <span class="function-name">listOf</span>(</div>
+                            <div class="indent-2"><span class="string-literal">"Google Professional Developer"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"AWS Cloud Practitioner"</span>,</div>
+                            <div class="indent-2"><span class="string-literal">"Android Performance Optimization"</span></div>
+                            <div class="indent-1">)</div>
+                        </div><div class="section-title">}</div>
+                    </div>
+                </div>
+                <div class="main-class-declaration">}</div>
+                <div class="footer">
+                    <div class="comment">// Resume generated with Kotlin-style syntax and Darcula theme</div>
+                    <div class="comment">// © 2025 Jonathan Klopper. All rights reserved.</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
